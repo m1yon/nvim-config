@@ -625,14 +625,23 @@ later(function()
 	end
 end)
 
--- Move any selection in any direction. Example usage in Normal mode:
--- - `<M-j>`/`<M-k>` - move current line down / up
--- - `<M-h>`/`<M-l>` - decrease / increase indent of current line
---
--- Example usage in Visual mode:
--- - `<M-h>`/`<M-j>`/`<M-k>`/`<M-l>` - move selection left/down/up/right
+-- Move any selection in any direction.
 later(function()
-	require("mini.move").setup()
+	require("mini.move").setup({
+		mappings = {
+			-- Move visual selection in Visual mode.
+			left = "H",
+			right = "L",
+			down = "J",
+			up = "K",
+
+			-- Move current line in Normal mode
+			line_left = "",
+			line_right = "",
+			line_down = "",
+			line_up = "",
+		},
+	})
 end)
 
 -- Text edit operators. All operators have mappings for:
