@@ -214,3 +214,11 @@ end)
 --   -- Enable only one
 --   vim.cmd('color everforest')
 -- end)
+
+-- AI =====================================================================
+later(function()
+	add("supermaven-inc/supermaven-nvim")
+	require("supermaven-nvim").setup({ keymaps = {
+		accept_suggestion = "<c-a>",
+	} })
+end)
