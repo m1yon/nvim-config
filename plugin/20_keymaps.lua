@@ -146,12 +146,14 @@ nmap_leader('fl', '<Cmd>Pick buf_lines scope="all"<CR>',        'Lines (all)')
 nmap_leader('fL', '<Cmd>Pick buf_lines scope="current"<CR>',    'Lines (buf)')
 nmap_leader('fm', '<Cmd>Pick git_hunks<CR>',                    'Modified hunks (all)')
 nmap_leader('fM', '<Cmd>Pick git_hunks path="%"<CR>',           'Modified hunks (buf)')
+nmap_leader("fp", "<Cmd>Pick visit_paths recency_weight=0<CR>", "Popular visits (cwd)")
+nmap_leader("fP", '<Cmd>Pick visit_paths cwd="" recency_weight=0<CR>', "Popular visits (all)")
 nmap_leader('fr', '<Cmd>Pick resume<CR>',                       'Resume')
 nmap_leader('fR', '<Cmd>Pick lsp scope="references"<CR>',       'References (LSP)')
 nmap_leader('fs', '<Cmd>Pick lsp scope="workspace_symbol"<CR>', 'Symbols workspace')
 nmap_leader('fS', '<Cmd>Pick lsp scope="document_symbol"<CR>',  'Symbols document')
-nmap_leader('fv', '<Cmd>Pick visit_paths cwd=""<CR>',           'Visit paths (all)')
-nmap_leader('fV', '<Cmd>Pick visit_paths<CR>',                  'Visit paths (cwd)')
+nmap_leader('fv', '<Cmd>Pick visit_paths recency_weight=1<CR>',                  'Visit paths (cwd)')
+nmap_leader('fV', '<Cmd>Pick visit_paths cwd="" recency_weight=1<CR>',           'Visit paths (all)')
 
 -- g is for 'Git'. Common usage:
 -- - `<Leader>gs` - show information at cursor
