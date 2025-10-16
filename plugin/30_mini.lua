@@ -486,7 +486,7 @@ later(function()
 		pattern = "MiniFilesBufferCreate",
 		callback = function(args)
 			local b = args.data.buf_id
-			vim.keymap.set("n", "L", ui_open, { buffer = b, desc = "OS open" })
+			vim.keymap.set("n", "<c-l>", ui_open, { buffer = b, desc = "OS open" })
 		end,
 	})
 end)
