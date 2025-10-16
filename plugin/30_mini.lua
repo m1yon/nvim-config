@@ -460,6 +460,18 @@ later(function()
     MiniFiles.set_bookmark('w', vim.fn.getcwd, { desc = 'Working directory' })
   end
   _G.Config.new_autocmd('User', 'MiniFilesExplorerOpen', add_marks, 'Add bookmarks')
+
+	local ui_open = function()
+		vim.ui.open(MiniFiles.get_fs_entry().path)
+	end
+
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "MiniFilesBufferCreate",
+		callback = function(args)
+			local b = args.data.buf_id
+			vim.keymap.set("n", "L", ui_open, { buffer = b, desc = "OS open" })
+		end,
+	})
 end)
 
 -- Git integration for more straightforward Git actions based on Neovim's state.
