@@ -149,8 +149,8 @@ local starter = require("mini.starter")
 now(function()
 	require("mini.starter").setup({
 		items = {
-			starter.sections.recent_files(10, true),
-			starter.sections.sessions(5, true),
+			starter.sections.recent_files(5, true),
+			starter.sections.recent_files(5, false),
 			starter.sections.builtin_actions(),
 		},
 		content_hooks = {
