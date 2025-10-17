@@ -145,8 +145,20 @@ end)
 -- See also:
 -- - `:h MiniStarter-example-config` - non-default config examples
 -- - `:h MiniStarter-lifecycle` - how to work with Starter buffer
+local starter = require("mini.starter")
 now(function()
-	require("mini.starter").setup()
+	require("mini.starter").setup({
+		items = {
+			starter.sections.recent_files(10, true),
+			starter.sections.sessions(5, true),
+			starter.sections.builtin_actions(),
+		},
+		content_hooks = {
+			starter.gen_hook.indexing("all", { "Builtin actions" }),
+			starter.gen_hook.adding_bullet(),
+			starter.gen_hook.aligning("center", "center"),
+		},
+	})
 end)
 
 -- Statusline. Sets `:h 'statusline'` to show more info in a line below window.
