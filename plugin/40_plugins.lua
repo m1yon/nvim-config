@@ -31,9 +31,7 @@ local now_if_args = _G.Config.now_if_args
 now_if_args(function()
 	add({
 		source = "nvim-treesitter/nvim-treesitter",
-		-- Use `main` branch since `master` branch is frozen, yet still default
 		checkout = "main",
-		-- Update tree-sitter parser after plugin is updated
 		hooks = {
 			post_checkout = function()
 				vim.cmd("TSUpdate")
@@ -42,40 +40,33 @@ now_if_args(function()
 	})
 	add({
 		source = "nvim-treesitter/nvim-treesitter-textobjects",
-		-- Same logic as for 'nvim-treesitter'
 		checkout = "main",
 	})
 
-	-- Ensure installed parsers for listed languages. Add to `languages`
-	-- array languages which you want to have installed. To see available languages:
-	-- - Execute `:=require('nvim-treesitter').get_available()`
-	-- - Visit
-	--   https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md
-	local ensure_languages = {
-		-- These are already installed. Used as an example.
-		"lua",
-		"vimdoc",
-		"markdown",
-	}
-	local isnt_installed = function(lang)
-		return #vim.api.nvim_get_runtime_file("parser/" .. lang .. ".*", false) == 0
-	end
-	local to_install = vim.tbl_filter(isnt_installed, ensure_languages)
-	if #to_install > 0 then
-		require("nvim-treesitter").install(to_install)
-	end
+	require("nvim-treesitter.configs").setup({
+		-- A list of parser names, or "all" (the listed parsers MUST always be installed)
+		ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
 
-	-- Ensure tree-sitter enabled after opening a file for target language
-	local filetypes = {}
-	for _, lang in ipairs(ensure_languages) do
-		for _, ft in ipairs(vim.treesitter.language.get_filetypes(lang)) do
-			table.insert(filetypes, ft)
-		end
-	end
-	local ts_start = function(ev)
-		vim.treesitter.start(ev.buf)
-	end
-	_G.Config.new_autocmd("FileType", filetypes, ts_start, "Start tree-sitter")
+		-- Install parsers synchronously (only applied to `ensure_installed`)
+		sync_install = false,
+
+		-- Automatically install missing parsers when entering buffer
+		-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+		auto_install = true,
+
+		---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+		-- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+
+		highlight = {
+			enable = true,
+
+			-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+			-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+			-- Using this option may slow down your editor, and you may see some duplicate highlights.
+			-- Instead of true it can also be a list of languages
+			additional_vim_regex_highlighting = false,
+		},
+	})
 end)
 
 -- Language servers ===========================================================
