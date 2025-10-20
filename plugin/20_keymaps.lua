@@ -259,8 +259,8 @@ local make_pick_core = function(cwd, desc)
   end
 end
 
-nmap_leader('vc', make_pick_core('',  'Core visits (all)'),       'Core visits (all)')
-nmap_leader('vC', make_pick_core(nil, 'Core visits (cwd)'),       'Core visits (cwd)')
+nmap_leader('vc', make_pick_core(nil, 'Core visits (cwd)'),       'Core visits (cwd)')
+nmap_leader('vC', make_pick_core('',  'Core visits (all)'),       'Core visits (all)')
 nmap_leader('vv', '<Cmd>lua MiniVisits.add_label("core")<CR>',    'Add "core" label')
 nmap_leader('vV', '<Cmd>lua MiniVisits.remove_label("core")<CR>', 'Remove "core" label')
 nmap_leader('vl', '<Cmd>lua MiniVisits.add_label()<CR>',          'Add label')
