@@ -108,7 +108,7 @@ now_if_args(function()
 		"gopls",
 		"lua_ls",
 		"pyright",
-		"ts_ls",
+		"vtsls",
 		"terraformls",
 		"yamlls",
 		"tailwindcss",
