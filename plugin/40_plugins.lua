@@ -69,6 +69,19 @@ now_if_args(function()
 	})
 end)
 
+-- add syntax highliting for .env.* files
+vim.filetype.add({
+	extension = {
+		env = "sh",
+	},
+	filename = {
+		[".env"] = "sh",
+	},
+	pattern = {
+		["%.env%.[%w_.-]+"] = "sh",
+	},
+})
+
 -- Language servers ===========================================================
 
 -- Language Server Protocol (LSP) is a set of conventions that power creation of
