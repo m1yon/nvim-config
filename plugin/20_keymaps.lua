@@ -19,8 +19,8 @@ end
 nmap("[p", '<Cmd>exe "put! " . v:register<CR>', "Paste Above")
 nmap("]p", '<Cmd>exe "put "  . v:register<CR>', "Paste Below")
 
-nmap("<C-u>", "<C-u>zz", "Half page up")
-nmap("<C-d>", "<C-d>zz", "Half page down")
+nmap("<C-u>", "<C-u>zz", "Half page up and center")
+nmap("<C-d>", "<C-d>zz", "Half page down and center")
 
 -- Many general mappings are created by 'mini.basics'. See 'plugin/30_mini.lua'
 
