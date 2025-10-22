@@ -38,7 +38,6 @@ now(function()
 	require("mini.hues").setup({
 		background = "#282a36",
 		foreground = "#f8f8f2",
-		saturation = "high",
 	})
 end)
 
