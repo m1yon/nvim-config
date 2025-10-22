@@ -48,6 +48,7 @@ vim.o.splitright     = true       -- Vertical splits will be to the right
 vim.o.winborder      = 'single'   -- Use border in floating windows
 vim.o.wrap           = false      -- Don't visually wrap lines (toggle with \w)
 vim.o.relativenumber = true       -- Use relative line numebers
+vim.o.scrolloff      = 10          -- Scroll when cursor is x lines away from screen edge
 
 vim.o.cursorlineopt  = 'screenline,number' -- Show cursor line per screen line
 

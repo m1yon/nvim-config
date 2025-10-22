@@ -19,6 +19,9 @@ end
 nmap("[p", '<Cmd>exe "put! " . v:register<CR>', "Paste Above")
 nmap("]p", '<Cmd>exe "put "  . v:register<CR>', "Paste Below")
 
+nmap("<C-u>", "<C-u>zz", "Half page up")
+nmap("<C-d>", "<C-d>zz", "Half page down")
+
 -- Many general mappings are created by 'mini.basics'. See 'plugin/30_mini.lua'
 
 -- stylua: ignore start
