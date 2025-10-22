@@ -35,7 +35,11 @@ local now_if_args = _G.Config.now_if_args
 -- - `:h MiniHues-examples` - how to define highlighting with 'mini.hues'
 -- - 'plugin/40_plugins.lua' honorable mentions - other good color schemes
 now(function()
-	require("mini.hues").setup({ background = "#282a36", foreground = "#f8f8f2" })
+	require("mini.hues").setup({
+		background = "#282a36",
+		foreground = "#f8f8f2",
+		saturation = "high",
+	})
 end)
 
 -- You can try these other 'mini.hues'-based color schemes (uncomment with `gcc`):
