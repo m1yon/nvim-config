@@ -166,6 +166,7 @@ later(function()
 			lua = { "stylua" },
 			python = { "ruff_fix", "ruff_format" },
 			yaml = { "prettierd" },
+			css = { "prettierd" },
 		},
 
 		formatters = {},
@@ -225,4 +226,10 @@ later(function()
 	require("supermaven-nvim").setup({ keymaps = {
 		accept_suggestion = "<c-a>",
 	} })
+end)
+
+-- HTML/JSX =====================================================================
+later(function()
+	add("windwp/nvim-ts-autotag")
+	require("nvim-ts-autotag").setup()
 end)
