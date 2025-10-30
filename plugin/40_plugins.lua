@@ -230,7 +230,7 @@ later(function()
 	})
 	require("copilot").setup({
 		suggestion = {
-			enabled = true,
+			enabled = false,
 			auto_trigger = true,
 			hide_during_completion = false,
 			debounce = 75,
@@ -245,6 +245,17 @@ later(function()
 			},
 		},
 	})
+end)
+
+later(function()
+	add("folke/sidekick.nvim")
+	require("sidekick").setup()
+
+	vim.keymap.set("n", "<C-a>", function()
+		if not require("sidekick").nes_jump_or_apply() then
+			return "<Tab>"
+		end
+	end, { expr = true, desc = "Sidekick: Goto/Apply Next Edit Suggestion" })
 end)
 
 -- HTML/JSX =====================================================================
