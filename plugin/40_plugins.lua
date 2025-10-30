@@ -247,22 +247,6 @@ later(function()
 	})
 end)
 
-later(function()
-	add({
-		source = "folke/sidekick.nvim",
-		depends = {
-			"copilotlsp-nvim/copilot-lsp",
-		},
-	})
-	require("sidekick").setup()
-
-	vim.keymap.set("n", "<C-a>", function()
-		if not require("sidekick").nes_jump_or_apply() then
-			return "<C-a>"
-		end
-	end, { expr = true, desc = "Sidekick: Goto/Apply Next Edit Suggestion" })
-end)
-
 -- HTML/JSX =====================================================================
 later(function()
 	add("windwp/nvim-ts-autotag")
