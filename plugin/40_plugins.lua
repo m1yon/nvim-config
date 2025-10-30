@@ -9,7 +9,7 @@
 -- Use this file to install and configure other such plugins.
 
 -- Make concise helpers for installing/adding plugins in two stages
-local add, later = MiniDeps.add, MiniDeps.later
+local add, later, now = MiniDeps.add, MiniDeps.later, MiniDeps.now
 local now_if_args = _G.Config.now_if_args
 
 -- Tree-sitter ================================================================
@@ -221,11 +221,14 @@ end)
 -- end)
 
 -- AI =====================================================================
-later(function()
-	add("supermaven-inc/supermaven-nvim")
-	require("supermaven-nvim").setup({ keymaps = {
-		accept_suggestion = "<c-a>",
-	} })
+now(function()
+	add("github/copilot.vim")
+
+	vim.keymap.set("i", "<C-a>", 'copilot#Accept("\\<CR>")', {
+		expr = true,
+		replace_keycodes = false,
+	})
+	vim.g.copilot_no_tab_map = true
 end)
 
 -- HTML/JSX =====================================================================
