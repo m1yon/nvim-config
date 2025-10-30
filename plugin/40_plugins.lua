@@ -221,14 +221,30 @@ end)
 -- end)
 
 -- AI =====================================================================
-now(function()
-	add("github/copilot.vim")
-
-	vim.keymap.set("i", "<C-a>", 'copilot#Accept("\\<CR>")', {
-		expr = true,
-		replace_keycodes = false,
+later(function()
+	add({
+		source = "zbirenbaum/copilot.lua",
+		depends = {
+			"copilotlsp-nvim/copilot-lsp",
+		},
 	})
-	vim.g.copilot_no_tab_map = true
+	require("copilot").setup({
+		suggestion = {
+			enabled = true,
+			auto_trigger = true,
+			hide_during_completion = false,
+			debounce = 75,
+			trigger_on_accept = true,
+			keymap = {
+				accept = "<C-a>",
+				accept_word = false,
+				accept_line = false,
+				next = "<M-]>",
+				prev = "<M-[>",
+				dismiss = "<C-]>",
+			},
+		},
+	})
 end)
 
 -- HTML/JSX =====================================================================
