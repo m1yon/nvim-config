@@ -224,9 +224,6 @@ end)
 later(function()
 	add({
 		source = "zbirenbaum/copilot.lua",
-		depends = {
-			"copilotlsp-nvim/copilot-lsp",
-		},
 	})
 	require("copilot").setup({
 		suggestion = {
