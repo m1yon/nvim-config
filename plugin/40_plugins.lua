@@ -108,12 +108,19 @@ now_if_args(function()
 		"gopls",
 		"lua_ls",
 		"pyright",
-		"vtsls",
 		"terraformls",
 		"yamlls",
 		"tailwindcss",
 		"eslint",
 	})
+end)
+
+later(function()
+	add({
+		source = "pmizio/typescript-tools.nvim",
+		depends = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+	})
+	require("typescript-tools").setup({})
 end)
 
 -- Linting ====================================================================
