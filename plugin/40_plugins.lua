@@ -123,6 +123,11 @@ later(function()
 	require("typescript-tools").setup({})
 end)
 
+later(function()
+	add("dmmulroy/ts-error-translator.nvim")
+	require("ts-error-translator").setup({})
+end)
+
 -- Linting ====================================================================
 later(function()
 	add("mfussenegger/nvim-lint")
