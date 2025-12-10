@@ -253,6 +253,9 @@ later(function()
 				dismiss = "<C-]>",
 			},
 		},
+		filetypes = {
+			yaml = true,
+		},
 	})
 end)
 
