@@ -291,17 +291,26 @@ later(function()
 		},
 	})
 
-	-- Keymaps for Obsidian commands (<leader>n for Notes)
-	local map = vim.keymap.set
-	map("n", "<leader>no", "<cmd>ObsidianOpen<cr>", { desc = "Open note in Obsidian" })
-	map("n", "<leader>nn", "<cmd>ObsidianNew<cr>", { desc = "Create new note" })
-	map("n", "<leader>nf", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Files" })
-	map("n", "<leader>nb", "<cmd>ObsidianBacklinks<cr>", { desc = "Show backlinks" })
-	map("n", "<leader>nt", "<cmd>ObsidianTemplate<cr>", { desc = "Insert template" })
-	map("n", "<leader>ng", "<cmd>ObsidianSearch<cr>", { desc = "Grep" })
-	map("v", "<leader>ne", "<cmd>ObsidianExtractNote<cr>", { desc = "Extract to new note" })
-	map("n", "<leader>np", "<cmd>ObsidianPasteImg<cr>", { desc = "Paste image" })
-	map("n", "<leader>nr", "<cmd>ObsidianRename<cr>", { desc = "Rename note" })
-	map("n", "<leader>nc", "<cmd>ObsidianToggleCheckbox<cr>", { desc = "Toggle checkbox" })
-	map("n", "<leader>nT", "<cmd>ObsidianNewFromTemplate<cr>", { desc = "New note from template" })
+	-- Global Obsidian keymaps (always available)
+	vim.keymap.set("n", "<leader>nf", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Files" })
+	vim.keymap.set("n", "<leader>ng", "<cmd>ObsidianSearch<cr>", { desc = "Grep" })
+
+	-- Buffer-local Obsidian keymaps (only in markdown files)
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = "markdown",
+		callback = function(ev)
+			local map = function(mode, lhs, rhs, desc)
+				vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, desc = desc })
+			end
+			map("n", "<leader>no", "<cmd>ObsidianOpen<cr>", "Open note in Obsidian")
+			map("n", "<leader>nn", "<cmd>ObsidianNew<cr>", "Create new note")
+			map("n", "<leader>nb", "<cmd>ObsidianBacklinks<cr>", "Show backlinks")
+			map("n", "<leader>nt", "<cmd>ObsidianTemplate<cr>", "Insert template")
+			map("v", "<leader>ne", "<cmd>ObsidianExtractNote<cr>", "Extract to new note")
+			map("n", "<leader>np", "<cmd>ObsidianPasteImg<cr>", "Paste image")
+			map("n", "<leader>nr", "<cmd>ObsidianRename<cr>", "Rename note")
+			map("n", "<leader>nc", "<cmd>ObsidianToggleCheckbox<cr>", "Toggle checkbox")
+			map("n", "<leader>nT", "<cmd>ObsidianNewFromTemplate<cr>", "New note from template")
+		end,
+	})
 end)
