@@ -278,3 +278,30 @@ later(function()
 	add("windwp/nvim-ts-autotag")
 	require("nvim-ts-autotag").setup()
 end)
+
+-- Obsidian =====================================================================
+later(function()
+	add({ source = "epwalsh/obsidian.nvim", depends = { "nvim-lua/plenary.nvim" } })
+	require("obsidian").setup({
+		workspaces = {
+			{
+				name = "main",
+				path = "~/obsidian",
+			},
+		},
+	})
+
+	-- Keymaps for Obsidian commands (<leader>n for Notes)
+	local map = vim.keymap.set
+	map("n", "<leader>no", "<cmd>ObsidianOpen<cr>", { desc = "Open note in Obsidian" })
+	map("n", "<leader>nn", "<cmd>ObsidianNew<cr>", { desc = "Create new note" })
+	map("n", "<leader>nf", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Files" })
+	map("n", "<leader>nb", "<cmd>ObsidianBacklinks<cr>", { desc = "Show backlinks" })
+	map("n", "<leader>nt", "<cmd>ObsidianTemplate<cr>", { desc = "Insert template" })
+	map("n", "<leader>ng", "<cmd>ObsidianSearch<cr>", { desc = "Grep" })
+	map("v", "<leader>ne", "<cmd>ObsidianExtractNote<cr>", { desc = "Extract to new note" })
+	map("n", "<leader>np", "<cmd>ObsidianPasteImg<cr>", { desc = "Paste image" })
+	map("n", "<leader>nr", "<cmd>ObsidianRename<cr>", { desc = "Rename note" })
+	map("n", "<leader>nc", "<cmd>ObsidianToggleCheckbox<cr>", { desc = "Toggle checkbox" })
+	map("n", "<leader>nT", "<cmd>ObsidianNewFromTemplate<cr>", { desc = "New note from template" })
+end)
