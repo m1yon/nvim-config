@@ -52,6 +52,7 @@ now_if_args(function()
 		"lua",
 		"vimdoc",
 		"markdown",
+		"markdown_inline",
 		"go",
 		"typescript",
 		"javascript",
@@ -126,6 +127,7 @@ now_if_args(function()
 		"yamlls",
 		"tailwindcss",
 		"eslint",
+		"grammarly",
 	})
 end)
 
@@ -281,8 +283,9 @@ end)
 
 -- Obsidian =====================================================================
 later(function()
-	add({ source = "epwalsh/obsidian.nvim", depends = { "nvim-lua/plenary.nvim" } })
+	add({ source = "obsidian-nvim/obsidian.nvim", depends = { "nvim-lua/plenary.nvim" } })
 	require("obsidian").setup({
+		legacy_commands = false,
 		workspaces = {
 			{
 				name = "main",
@@ -292,8 +295,8 @@ later(function()
 	})
 
 	-- Global Obsidian keymaps (always available)
-	vim.keymap.set("n", "<leader>nf", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Files" })
-	vim.keymap.set("n", "<leader>ng", "<cmd>ObsidianSearch<cr>", { desc = "Grep" })
+	vim.keymap.set("n", "<leader>nf", "<cmd>Obsidian quick_switch<cr>", { desc = "Files" })
+	vim.keymap.set("n", "<leader>ng", "<cmd>Obsidian search<cr>", { desc = "Grep" })
 
 	-- Buffer-local Obsidian keymaps (only in markdown files)
 	vim.api.nvim_create_autocmd("FileType", {
@@ -302,15 +305,14 @@ later(function()
 			local map = function(mode, lhs, rhs, desc)
 				vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, desc = desc })
 			end
-			map("n", "<leader>no", "<cmd>ObsidianOpen<cr>", "Open note in Obsidian")
-			map("n", "<leader>nn", "<cmd>ObsidianNew<cr>", "Create new note")
-			map("n", "<leader>nb", "<cmd>ObsidianBacklinks<cr>", "Show backlinks")
-			map("n", "<leader>nt", "<cmd>ObsidianTemplate<cr>", "Insert template")
-			map("v", "<leader>ne", "<cmd>ObsidianExtractNote<cr>", "Extract to new note")
-			map("n", "<leader>np", "<cmd>ObsidianPasteImg<cr>", "Paste image")
-			map("n", "<leader>nr", "<cmd>ObsidianRename<cr>", "Rename note")
-			map("n", "<leader>nc", "<cmd>ObsidianToggleCheckbox<cr>", "Toggle checkbox")
-			map("n", "<leader>nT", "<cmd>ObsidianNewFromTemplate<cr>", "New note from template")
+			map("n", "<leader>nn", "<cmd>Obsidian new<cr>", "Create new note")
+			map("n", "<leader>nb", "<cmd>Obsidian backlinks<cr>", "Show backlinks")
+			map("n", "<leader>nt", "<cmd>Obsidian template<cr>", "Insert template")
+			map("v", "<leader>ne", "<cmd>Obsidian extract_note<cr>", "Extract to new note")
+			map("n", "<leader>np", "<cmd>Obsidian paste_img<cr>", "Paste image")
+			map("n", "<leader>nr", "<cmd>Obsidian rename<cr>", "Rename note")
+			map("n", "<leader>nc", "<cmd>Obsidian toggle_checkbox<cr>", "Toggle checkbox")
+			map("n", "<leader>nT", "<cmd>Obsidian new_from_template<cr>", "New note from template")
 		end,
 	})
 end)
