@@ -230,7 +230,7 @@ end)
 -- If you need them to work elsewhere, consider using other package managers.
 --
 -- You can use it like so:
-later(function()
+now_if_args(function()
 	add("mason-org/mason.nvim")
 	require("mason").setup()
 end)
