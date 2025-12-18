@@ -31,8 +31,6 @@ local now_if_args = _G.Config.now_if_args
 now_if_args(function()
 	add({
 		source = "nvim-treesitter/nvim-treesitter",
-		-- Use `main` branch since `master` branch is frozen, yet still default
-		checkout = "main",
 		-- Update tree-sitter parser after plugin is updated
 		hooks = {
 			post_checkout = function()
@@ -42,7 +40,8 @@ now_if_args(function()
 	})
 	add({
 		source = "nvim-treesitter/nvim-treesitter-textobjects",
-		-- Same logic as for 'nvim-treesitter'
+		-- Use `main` branch since `master` branch is frozen, yet still default
+		-- It is needed for compatibility with 'nvim-treesitter' `main` branch
 		checkout = "main",
 	})
 
